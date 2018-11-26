@@ -3,8 +3,13 @@ import Article from './article'
 import accordion from '../decorators/accordion'
 
 class ArticleList extends Component {
+  setListRef = (ref) => {
+    this.list = ref
+    console.log('---', 'list: ', ref)
+  }
+
   render() {
-    return <ul>{this.articleItems()}</ul>
+    return <ul ref={this.setListRef}>{this.articleItems()}</ul>
   }
 
   articleItems() {
