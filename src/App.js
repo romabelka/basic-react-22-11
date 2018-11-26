@@ -3,11 +3,13 @@ import { findDOMNode } from 'react-dom'
 import articles from './fixtures'
 import ArticleList from './components/article-list'
 import ArticlesChart from './components/articles-chart'
+import UserForm from './components/user-form'
 
 class App extends Component {
   render() {
     return (
       <div>
+        <UserForm />
         <ArticleList articles={articles} ref={this.setArticleListRef} />
         <ArticlesChart articles={articles} />
       </div>
