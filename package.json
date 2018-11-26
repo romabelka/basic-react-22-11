@@ -11,10 +11,27 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "prettier": "prettier --write \"**/*.js\"",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": "react-app"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "devDependencies": {
+    "husky": "^1.0.0-rc.6",
+    "lint-staged": "^7.1.0",
+    "prettier": "^1.12.1"
+  },
+  "lint-staged": {
+    "*.js": [
+      "npm run prettier",
+      "git add"
+    ]
   },
   "browserslist": [
     ">0.2%",
