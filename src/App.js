@@ -1,8 +1,14 @@
 import React, { Component } from 'react'
+import articles from './fixtures'
+import ArticleList from './components/article-list'
 
 class App extends Component {
   render() {
-    return <h1>Hello World</h1>
+    return (
+      <div>
+        <ArticleList articles={articles} />
+      </div>
+    )
   }
 }
 
