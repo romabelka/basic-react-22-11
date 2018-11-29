@@ -6,7 +6,9 @@ function Article(props) {
   return (
     <div>
       <h3>{article.title}</h3>
-      <button onClick={toggleOpen}>{isOpen ? 'close' : 'open'}</button>
+      <button onClick={toggleOpen} className="test__article--btn">
+        {isOpen ? 'close' : 'open'}
+      </button>
       {getBody(props)}
     </div>
   )
@@ -16,7 +18,7 @@ function getBody({ isOpen, article }) {
   if (!isOpen) return null
 
   return (
-    <section>
+    <section className="test__article--body">
       {article.text}
       <CommentList comments={article.comments} />
     </section>
