@@ -8,7 +8,18 @@ class ArticleList extends Component {
     console.log('---', 'list: ', ref)
   }
 
+  state = {
+    error: null
+  }
+
+  componentDidCatch(error) {
+    console.log('---', 123, error)
+
+    this.setState({ error })
+  }
+
   render() {
+    if (this.state.error) return <h3>Error</h3>
     return <ul ref={this.setListRef}>{this.articleItems()}</ul>
   }
 
