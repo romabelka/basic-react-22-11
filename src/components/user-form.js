@@ -1,6 +1,10 @@
 import React, { Component } from 'react'
 
 class UserForm extends Component {
+  static propTypes = {
+    label: 'Username'
+  }
+
   state = {
     username: ''
   }
@@ -19,7 +23,7 @@ class UserForm extends Component {
   render() {
     return (
       <div>
-        Username: <input value={this.state.username} onChange={this.handleUserChange} />
+        {this.props.label}: <input value={this.state.username} onChange={this.handleUserChange} />
       </div>
     )
   }
