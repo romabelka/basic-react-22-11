@@ -1,7 +1,7 @@
 import React from 'react'
 import { mount, shallow } from 'enzyme'
-import Article from './article'
-import articles from '../fixtures'
+import Article from './index'
+import articles from '../../fixtures'
 
 describe('Article', () => {
   it('should be closed by default', () => {

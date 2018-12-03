@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import CommentList from './comment-list'
+import CommentList from '../comment-list'
 
 function Article(props) {
   const { article, isOpen, toggleOpen } = props
