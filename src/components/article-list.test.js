@@ -1,10 +1,7 @@
 import React from 'react'
-import Enzyme, { shallow, render, mount } from 'enzyme'
-import Adapter from 'enzyme-adapter-react-16'
+import { shallow, render, mount } from 'enzyme'
 import DecoratedArticleList, { ArticleList } from './article-list'
 import articles from '../fixtures'
-
-Enzyme.configure({ adapter: new Adapter() })
 
 describe('ArticleList', () => {
   it('should render N articles', () => {
