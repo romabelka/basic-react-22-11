@@ -1,7 +1,15 @@
 import {} from '../constants'
 import { normalizedComments } from '../fixtures'
 
-export default (commentsState = normalizedComments, action) => {
+const defaultComments = normalizedComments.reduce(
+  (acc, comment) => ({
+    ...acc,
+    [comment.id]: comment
+  }),
+  {}
+)
+
+export default (commentsState = defaultComments, action) => {
   const { type } = action
 
   switch (type) {
