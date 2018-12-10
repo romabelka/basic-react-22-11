@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import CommentList from '../comment-list'
 import { connect } from 'react-redux'
-import { deleteArticle } from '../../ac'
+import { deleteArticle, loadArticleById } from '../../ac'
+import Loader from '../common/loader'
 
 class Article extends Component {
   render() {
@@ -19,6 +20,12 @@ class Article extends Component {
     )
   }
 
+  componentDidUpdate(oldProps) {
+    const { isOpen, loadArticleById, article } = this.props
+
+    if (isOpen && !oldProps.isOpen && !article.text) loadArticleById(article.id)
+  }
+
   handleDeleteClick = () => {
     const { deleteArticle, article } = this.props
     deleteArticle(article.id)
@@ -27,6 +34,7 @@ class Article extends Component {
   getBody() {
     const { isOpen, article } = this.props
     if (!isOpen) return null
+    if (article.loading) return <Loader />
 
     return (
       <section className="test__article--body">
@@ -48,5 +56,5 @@ Article.propTypes = {
 
 export default connect(
   null,
-  { deleteArticle }
+  { deleteArticle, loadArticleById }
 )(Article)
