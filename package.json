@@ -2,6 +2,7 @@
   "name": "basic-22-11",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:3001/",
   "dependencies": {
     "enzyme": "^3.7.0",
     "enzyme-adapter-react-16": "^1.7.0",
@@ -16,7 +17,8 @@
     "reselect": "^4.0.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "concurrently \"react-scripts start\" \"npm run api\"",
+    "api": "node simple_api/server.js",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "prettier": "prettier --write \"**/*.js\"",
@@ -31,6 +33,7 @@
     }
   },
   "devDependencies": {
+    "concurrently": "^4.1.0",
     "husky": "^1.0.0-rc.6",
     "lint-staged": "^7.1.0",
     "prettier": "^1.12.1"
