@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import Article from './article'
 import accordion from '../decorators/accordion'
 import { filtratedArticlesSelector } from '../selectors'
+import { loadAllArticles } from '../ac'
 
 export class ArticleList extends Component {
   static propTypes = {
@@ -50,9 +51,11 @@ export class ArticleList extends Component {
   }
 }
 
-export default connect((state) => {
-  console.log('---', 'connect')
-  return {
-    articles: filtratedArticlesSelector(state)
-  }
-})(accordion(ArticleList))
+export default connect(
+  (state) => {
+    return {
+      articles: filtratedArticlesSelector(state)
+    }
+  },
+  { fetchAllArticles: loadAllArticles }
+)(accordion(ArticleList))

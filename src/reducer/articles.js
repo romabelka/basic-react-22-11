@@ -1,6 +1,5 @@
 import { Record } from 'immutable'
-import { DELETE_ARTICLE, ADD_COMMENT } from '../constants'
-import { normalizedArticles as defaultArticles } from '../fixtures'
+import { DELETE_ARTICLE, ADD_COMMENT, LOAD_ALL_ARTICLES } from '../constants'
 import { arrToMap } from './utils'
 
 const ArticleRecord = Record({
@@ -11,8 +10,8 @@ const ArticleRecord = Record({
   comments: []
 })
 
-export default (articles = arrToMap(defaultArticles, ArticleRecord), action) => {
-  const { type, payload, randomId } = action
+export default (articles = arrToMap([], ArticleRecord), action) => {
+  const { type, payload, randomId, response } = action
 
   switch (type) {
     case DELETE_ARTICLE:
@@ -22,6 +21,9 @@ export default (articles = arrToMap(defaultArticles, ArticleRecord), action) => 
       return articles.updateIn([payload.articleId, 'comments'], (comments) =>
         comments.concat(randomId)
       )
+
+    case LOAD_ALL_ARTICLES:
+      return arrToMap(response, ArticleRecord)
 
     default:
       return articles
