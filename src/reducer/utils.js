@@ -1,9 +1,8 @@
-export function arrToMap(arr) {
+import { Map } from 'immutable'
+
+export function arrToMap(arr, DataRecord) {
   return arr.reduce(
-    (acc, item) => ({
-      ...acc,
-      [item.id]: item
-    }),
-    {}
+    (acc, item) => acc.set(item.id, DataRecord ? new DataRecord(item) : item),
+    new Map({})
   )
 }

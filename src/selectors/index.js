@@ -3,7 +3,7 @@ import { createSelector } from 'reselect'
 export const articlesMapSelector = (state) => state.articles
 export const articleListSelector = createSelector(
   articlesMapSelector,
-  (articlesMap) => Object.values(articlesMap)
+  (articlesMap) => articlesMap.valueSeq().toArray()
 )
 
 export const commentsSelector = (state) => state.comments
@@ -19,7 +19,7 @@ export const createCommentSelector = () =>
     idSelector,
     (comments, id) => {
       console.log('---', 'comment selector', id)
-      return comments[id]
+      return comments.get(id)
     }
   )
 
