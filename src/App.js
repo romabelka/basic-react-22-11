@@ -31,6 +31,9 @@ class App extends Component {
         <Route path="/counter" component={Counter} />
         <Route path="/filters" component={Filters} />
         <Route path="/articles" component={ArticleList} />
+        {/*
+        <Route path="/articles" exact render={() => <h1>Select an article</h1>} />
+*/}
       </div>
     )
   }

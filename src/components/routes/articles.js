@@ -10,13 +10,18 @@ class ArticlesPage extends Component {
     return (
       <Fragment>
         <ArticleList />
-        <Route path="/articles/:id" render={this.getArticlePage} />
+        <Route path="/articles/:id" children={this.getArticlePage} />
+        {/*
+        {this.props.match.isExact && <h1>Select an Article</h1>}
+*/}
       </Fragment>
     )
   }
 
   getArticlePage = ({ match }) => {
-    return <Article id={match.params.id} isOpen />
+    if (!match) return <h1>Select an Article</h1>
+
+    return <Article id={match.params.id} isOpen key={match.params.id} />
   }
 }
 

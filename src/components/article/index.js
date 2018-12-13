@@ -23,12 +23,20 @@ class Article extends Component {
     )
   }
 
+  componentDidMount() {
+    const { isOpen, loadArticleById, id } = this.props
+
+    if (isOpen) loadArticleById(id)
+  }
+  /*
+
   componentDidUpdate() {
     const { isOpen, loadArticleById, id } = this.props
 
     if (isOpen) loadArticleById(id)
   }
 
+*/
   handleDeleteClick = () => {
     const { deleteArticle, article } = this.props
     deleteArticle(article.id)
