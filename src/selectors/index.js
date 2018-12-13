@@ -7,6 +7,7 @@ export const articleListSelector = createSelector(
 )
 
 export const articlesLoadingSelector = (state) => state.articles.loading
+export const articlesLoadedSelector = (state) => state.articles.loaded
 
 export const commentsMapSelector = (state) => state.comments.entities
 
@@ -14,6 +15,12 @@ export const selectedArticlesSelector = (state) => state.filters.selected
 export const dateRangeSelector = (state) => state.filters.dateRange
 
 export const idSelector = (_, props) => props.id
+
+export const articleSelector = createSelector(
+  articlesMapSelector,
+  idSelector,
+  (articles, id) => articles.get(id)
+)
 
 export const createCommentSelector = () =>
   createSelector(
