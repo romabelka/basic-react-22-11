@@ -8,7 +8,7 @@ export const articleListSelector = createSelector(
 
 export const articlesLoadingSelector = (state) => state.articles.loading
 
-export const commentsSelector = (state) => state.comments
+export const commentsMapSelector = (state) => state.comments.entities
 
 export const selectedArticlesSelector = (state) => state.filters.selected
 export const dateRangeSelector = (state) => state.filters.dateRange
@@ -17,7 +17,7 @@ export const idSelector = (_, props) => props.id
 
 export const createCommentSelector = () =>
   createSelector(
-    commentsSelector,
+    commentsMapSelector,
     idSelector,
     (comments, id) => {
       console.log('---', 'comment selector', id)
