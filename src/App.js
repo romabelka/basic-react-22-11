@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Route, NavLink } from 'react-router-dom'
+import { Route, NavLink, Switch } from 'react-router-dom'
 import ArticleList from './components/routes/articles'
 import UserForm from './components/user-form'
 import Filters from './components/filters'
@@ -28,9 +28,13 @@ class App extends Component {
         </div>
         <UserForm />
 
-        <Route path="/counter" component={Counter} />
-        <Route path="/filters" component={Filters} />
-        <Route path="/articles" component={ArticleList} />
+        <Switch>
+          <Route path="/counter" component={Counter} />
+          <Route path="/filters" component={Filters} />
+          <Route path="/articles/new" render={() => <h1>New Article</h1>} />
+          <Route path="/articles" component={ArticleList} />
+          <Route path="*" render={() => <h1>Not Found</h1>} />
+        </Switch>
         {/*
         <Route path="/articles" exact render={() => <h1>Select an article</h1>} />
 */}
