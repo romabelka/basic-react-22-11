@@ -1,8 +1,9 @@
 import React from 'react'
 import CommentsPagination from '../comments-pagination'
-import { Route } from 'react-router-dom'
+import { Redirect, Route } from 'react-router-dom'
 
-function CommentsPage() {
+function CommentsPage({ match }) {
+  if (match.isExact) return <Redirect to="/comments/1" />
   return <Route path="/comments/:page" render={getCommentsPaginator} />
 }
 
