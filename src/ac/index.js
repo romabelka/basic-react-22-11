@@ -80,7 +80,8 @@ export function loadArticleById(id) {
     fetch(`/api/article/${id}`)
       .then((res) => {
         if (res.status >= 400) throw new Error(res.statusText)
-        res.json()
+
+        return res.json()
       })
       .then((response) =>
         dispatch({

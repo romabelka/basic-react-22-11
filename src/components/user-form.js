@@ -5,25 +5,14 @@ class UserForm extends Component {
     label: 'Username'
   }
 
-  state = {
-    username: ''
-  }
-
   handleUserChange = (ev) => {
-    if (ev.target.value.length > 10)
-      return this.setState({
-        username: ''
-      })
-
-    this.setState({
-      username: ev.target.value
-    })
+    this.props.onChange(ev.target.value)
   }
 
   render() {
     return (
       <div>
-        {this.props.label}: <input value={this.state.username} onChange={this.handleUserChange} />
+        {this.props.label}: <input value={this.props.value} onChange={this.handleUserChange} />
       </div>
     )
   }

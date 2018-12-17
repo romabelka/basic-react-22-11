@@ -6,6 +6,7 @@ import toggleOpen from '../decorators/toggleOpen'
 import { connect } from 'react-redux'
 import { loadArticleComments } from '../ac'
 import Loader from './common/loader'
+import { Consumer as UserConsumer } from '../contexts/user'
 
 class CommentList extends Component {
   static propTypes = {
@@ -63,6 +64,7 @@ class CommentList extends Component {
 
     return (
       <div>
+        <UserConsumer>{(username) => <h3>{username}</h3>}</UserConsumer>
         {body}
         <CommentForm articleId={id} />
       </div>
