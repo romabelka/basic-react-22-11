@@ -5,33 +5,20 @@ import CommentsPage from './components/routes/comments-page'
 import UserForm from './components/user-form'
 import Filters from './components/filters'
 import Counter from './components/counter'
+import Menu, { MenuItem } from './components/menu'
 
 class App extends Component {
   render() {
     return (
       <div>
-        <div>
-          <div>
-            <NavLink to="/articles" activeStyle={{ color: 'red' }}>
-              articles
-            </NavLink>
-          </div>
-          <div>
-            <NavLink to="/filters" activeStyle={{ color: 'red' }}>
-              filters
-            </NavLink>
-          </div>
-          <div>
-            <NavLink to="/counter" activeStyle={{ color: 'red' }}>
-              counter
-            </NavLink>
-          </div>
-          <div>
-            <NavLink to="/comments" activeStyle={{ color: 'red' }}>
-              comments
-            </NavLink>
-          </div>
-        </div>
+        <Menu>
+          <MenuItem to="/articles">Articles</MenuItem>
+          <MenuItem to="/comments">Comments</MenuItem>
+          <MenuItem to="/filters">
+            <b>Filters</b>
+          </MenuItem>
+          <MenuItem to="/counter">Counter</MenuItem>
+        </Menu>
         <UserForm />
 
         <Switch>
