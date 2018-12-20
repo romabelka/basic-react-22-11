@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { CSSTransition } from 'react-transition-group'
 import Comment from './comment'
 import CommentForm from './comment-form'
 import toggleOpen from '../decorators/toggleOpen'
@@ -8,6 +9,7 @@ import { loadArticleComments } from '../ac'
 import Loader from './common/loader'
 import { Consumer as UserConsumer } from '../contexts/user'
 import i18n from './i18n'
+import './comment-list.css'
 
 class CommentList extends Component {
   static propTypes = {
@@ -37,18 +39,28 @@ class CommentList extends Component {
         <button onClick={toggleOpen} className="test__comment-list--btn">
           {t(text)}
         </button>
-        {this.getBody()}
+        <CSSTransition
+          in={isOpen}
+          classNames="comments"
+          timeout={{
+            enter: 500,
+            exit: 300
+          }}
+          unmountOnExit
+        >
+          {this.getBody}
+        </CSSTransition>
       </div>
     )
   }
 
-  getBody() {
+  getBody = () => {
     const {
       article: { comments, id, commentsLoading, commentsLoaded },
       isOpen,
       t
     } = this.props
-    if (!isOpen) return null
+    //    if (!isOpen) return null
     if (commentsLoading) return <Loader />
     if (!commentsLoaded) return null
 

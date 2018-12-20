@@ -10,6 +10,8 @@ import {
 import { loadAllArticles } from '../ac'
 import Loader from './common/loader'
 import { NavLink } from 'react-router-dom'
+import { TransitionGroup, CSSTransition } from 'react-transition-group'
+import './article-list.css'
 
 export class ArticleList extends Component {
   static propTypes = {
@@ -40,17 +42,23 @@ export class ArticleList extends Component {
     console.log('---', 'render article list')
     if (this.state.error) return <h3>Error</h3>
     if (this.props.loading) return <Loader />
-    return <ul ref={this.setListRef}>{this.articleItems()}</ul>
+    return (
+      <ul ref={this.setListRef}>
+        <TransitionGroup>{this.articleItems()}</TransitionGroup>
+      </ul>
+    )
   }
 
   articleItems() {
     const { articles } = this.props
     return articles.map((article) => (
-      <li key={article.id} className="test__article-list--item">
-        <NavLink to={`/articles/${article.id}`} activeStyle={{ color: 'red' }}>
-          {article.title}
-        </NavLink>
-      </li>
+      <CSSTransition key={article.id} classNames="articles" timeout={500}>
+        <li className="test__article-list--item">
+          <NavLink to={`/articles/${article.id}`} activeStyle={{ color: 'red' }}>
+            {article.title}
+          </NavLink>
+        </li>
+      </CSSTransition>
     ))
   }
 }
