@@ -4,20 +4,18 @@ import CommentList from '../comment-list'
 import { connect } from 'react-redux'
 import { deleteArticle, loadArticleById } from '../../ac'
 import Loader from '../common/loader'
-import { articleListSelector, articleSelector } from '../../selectors'
+import { articleSelector } from '../../selectors'
+import i18n from '../i18n'
 
 class Article extends Component {
   render() {
-    const { article, isOpen, toggleOpen } = this.props
+    const { article, t } = this.props
     if (!article) return null
 
     return (
       <div>
         <h3>{article.title}</h3>
-        <button onClick={toggleOpen} className="test__article--btn">
-          {isOpen ? 'close' : 'open'}
-        </button>
-        <button onClick={this.handleDeleteClick}>delete me</button>
+        <button onClick={this.handleDeleteClick}>{t('delete me')}</button>
         {this.getBody()}
       </div>
     )
@@ -65,9 +63,11 @@ Article.propTypes = {
   toggleOpen: PropTypes.func
 }
 
-export default connect(
-  (state, props) => ({
-    article: articleSelector(state, props)
-  }),
-  { deleteArticle, loadArticleById }
-)(Article)
+export default i18n(
+  connect(
+    (state, props) => ({
+      article: articleSelector(state, props)
+    }),
+    { deleteArticle, loadArticleById }
+  )(Article)
+)
